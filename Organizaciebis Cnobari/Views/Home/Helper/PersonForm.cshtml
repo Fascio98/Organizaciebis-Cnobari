@@ -1,0 +1,27 @@
+﻿@model Person
+<div-class ="form-group">
+    <label asp-for="Name">სახელი</label>
+    <input type="text" asp-for="Name" class="form-control" />
+    <span class="text-danger" asp-validation-for="Name"></span>
+</div-class>
+<div-class ="form-group">
+    <label asp-for="LastName">გვარი</label>
+    <input type="text" asp-for="LastName" class="form-control" />
+    <span class="text-danger" asp-validation-for="LastName"></span>
+</div-class>
+<div-class ="form-group">
+    <label asp-for="PersonalID">პირადი ნომერი</label>
+    <input type="text" asp-for="PersonalID" class="form-control" />
+    <span class="text-danger" asp-validation-for="PersonalID"></span>
+</div-class>
+<div-class ="form-group">
+    <label asp-for="BirthDay">დაბადების დღე</label>
+    <input type="date" asp-for="BirthDay" class="form-control" />
+    <span class="text-danger" asp-validation-for="BirthDay"></span>
+</div-class>
+<div-class ="form-group">
+    <label asp-for="TelephoneNumbers">ტელეფონის ნომრები</label>
+    <input type="text" asp-for="TelephoneNumbers" class="form-control" />
+    <span class="text-danger" asp-validation-for="TelephoneNumbers"></span>
+</div-class>
+

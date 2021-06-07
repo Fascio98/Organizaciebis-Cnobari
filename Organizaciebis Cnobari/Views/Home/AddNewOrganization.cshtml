@@ -1,0 +1,23 @@
+﻿@model Organization
+@{
+    ViewData["Title"] = "ახალი ორგანიზაციის დამატება";
+}
+
+<form asp-action="AddNewOrganization" asp-controller="Home" method="Post">
+    <div-class ="form-group">
+        <label asp-for="Name">ორგანიზაციის სახელი</label>
+        <input type="text" asp-for="Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div-class>
+    <div-class ="form-group">
+        <label asp-for="Address">ორგანიზაციის მისამართი</label>
+        <input type="text" asp-for="Address" class="form-control" />
+        <span class="text-danger" asp-validation-for="Address"></span>
+    </div-class>
+    <div-class ="form-group">
+        <label asp-for="Activity">ორგანიზაციის საქმიანობა</label>
+        <input type="text" asp-for="Activity" class="form-control" />
+        <span class="text-danger" asp-validation-for="Activity"></span>
+    </div-class>
+    <button type="submit" class="btn btn-primary">დამატება</button>
+</form>
