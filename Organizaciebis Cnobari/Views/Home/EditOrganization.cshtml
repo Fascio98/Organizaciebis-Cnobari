@@ -3,21 +3,7 @@
     ViewData["Title"] = "ორგანიზაციის ცვლილება";
 }
 <form asp-action="Edit" asp-controller="Home" method="Post">
-    <input type="hidden" asp-for="Id" />
-    <div-class ="form-group">
-        <label asp-for="Name">ორგანიზაციის სახელი</label>
-        <input type="text" asp-for="Name" class="form-control" />
-        <span class="text-danger" asp-validation-for="Name"></span>
-    </div-class>
-    <div-class ="form-group">
-        <label asp-for="Address">ორგანიზაციის მისამართი</label>
-        <input type="text" asp-for="Address" class="form-control" />
-        <span class="text-danger" asp-validation-for="Address"></span>
-    </div-class>
-    <div-class ="form-group">
-        <label asp-for="Activity">ორგანიზაციის საქმიანობა</label>
-        <input type="text" asp-for="Activity" class="form-control" />
-        <span class="text-danger" asp-validation-for="Activity"></span>
-    </div-class>
+    <input type="hidden" asp-for="Id" />  
+    <partial name="~/Views/Home/Helper/OrganizationForm.cshtml" model="Model"></partial>
     <button type="submit" class="btn btn-primary">დამატება</button>
 </form>

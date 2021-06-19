@@ -1,0 +1,42 @@
+﻿
+<!DOCTYPE HTML>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><title>ორგანიზაციების ცნობარი</title></a>
+    <link rel="stylesheet" href="~/css/style.css" type="text/css">
+</head>
+<body>
+
+    <div id="header">
+        <div>
+            <div class="logo">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"></a>
+            </div>
+            <ul id="navigation">
+                <li class="active">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li>
+                    <a href="features.html">Features</a>
+                </li>
+                <li>
+                    <a href="news.html">News</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+                <li>
+                    <a href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    @RenderBody();
+    
+
+</body>
+</html>
+

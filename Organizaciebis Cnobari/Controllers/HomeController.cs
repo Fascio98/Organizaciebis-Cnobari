@@ -56,11 +56,33 @@ namespace Organizaciebis_Cnobari.Controllers
         public IActionResult EditPerson(int id)
         {
             return View();
+
+        }
+        [HttpPost]
+        public IActionResult EditPerson(Person model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            ViewBag.Message = "ჩანაწერები განახლდა!";
+            return View(model);
             return RedirectToAction(nameof(Index));
         }
         public IActionResult EditOrganization(int id)
         {
             return View();
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public IActionResult EditOrganization(Organization model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            ViewBag.Message = "ჩანაწერები განახლდა!";
+            return View(model);
             return RedirectToAction(nameof(Index));
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
