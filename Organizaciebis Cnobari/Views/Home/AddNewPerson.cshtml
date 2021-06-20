@@ -2,8 +2,7 @@
 @{
     ViewData["Title"] = "ახალი მომხმარებლის დამატება";
 }
-
-<form asp-action="AddNewPerson" asp-controller="Home" method="Post">
+<form asp-action="AddNewPerson" asp-controller="Home" method="Post" style="margin-left:300px">
     <partial name="~/Views/Home/Helper/PersonForm.cshtml" model="Model"></partial>
     <button type="submit" class="btn btn-primary">დამატება</button>
 </form>

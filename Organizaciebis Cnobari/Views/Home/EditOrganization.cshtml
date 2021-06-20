@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "ორგანიზაციის ცვლილება";
 }
-<form asp-action="Edit" asp-controller="Home" method="Post">
+<form asp-action="Edit" asp-controller="Home" method="Post" style="margin-left:300px">
     <input type="hidden" asp-for="Id" />  
     <partial name="~/Views/Home/Helper/OrganizationForm.cshtml" model="Model"></partial>
     <button type="submit" class="btn btn-primary">დამატება</button>

@@ -1,10 +1,9 @@
 ﻿@model Organization
 @{
     ViewData["Title"] = "ახალი ორგანიზაციის დამატება";
-    Layout = "_CustomLayout";
 }
-<div class="row">
-    <form asp-action="AddNewOrganization" asp-controller="Home" method="Post">
+<div class="form-horizontal">
+    <form asp-action="AddNewOrganization" asp-controller="Home" method="Post" style="margin-left:300px">
         <partial name="~/Views/Home/Helper/OrganizationForm.cshtml" model="Model"></partial>
         <button type="submit" class="btn btn-primary">დამატება</button>
     </form>

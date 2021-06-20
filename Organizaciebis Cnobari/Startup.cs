@@ -50,7 +50,7 @@ namespace Organizaciebis_Cnobari
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=MainAdminLogin}/{action=MainAdminLogin}/{id?}");
             });
         }
     }
