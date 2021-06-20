@@ -1,9 +1,8 @@
-﻿@model MainAdmin 
+﻿@model MainAdmin
 @{
-    ViewData["Title"] = "მთავარი გვერდი";
+    ViewData["Title"] = "მთავარი ადმინის ლოგინი";
     Layout = "~/Views/Shared/_MainAdminLoginLayout.cshtml";
 }
-
 <div class="form-horizontal">
     <form asp-action="MainAdminLogin" asp-controller="MainAdminLogin" method="Post" style="margin-left:300px">
         <div class="form-group row" style="width:500px">
@@ -16,10 +15,11 @@
         <div class="form-group row" style="width:500px">
             <label asp-for="Password">მომხმარებლის პაროლი</label>
             <div class="col sm-10">
-                <input type="text" asp-for="Password" class="form-control" />
+                <input type="password" asp-for="Password" class="form-control" />
             </div>
             <span class="text-danger" asp-validation-for="Password"></span>
-        </div>        
+        </div>
         <button type="submit" class="btn btn-primary">შესვლა</button>
     </form>
 </div>
+

@@ -8,7 +8,7 @@ namespace Organizaciebis_Cnobari.Entities
 {
     public class MainAdmin
     {
-        public int Id { get; set; }
+        public static int Id { get; set; }
         [Required(ErrorMessage = "საჭირო ველი")]
         public string UserName { get; set; }
         [Required(ErrorMessage = "საჭირო ველი")]
