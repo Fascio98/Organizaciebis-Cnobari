@@ -33,17 +33,33 @@ namespace Organizaciebis_Cnobari.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult MainAdminLogin(MainAdmin model)
-        {           
+        {          
+            ViewBag.Message = "მომხმარებლის სახელი ან პაროლი არასწორია";
+            var obj = _context.MainAdmin.Where(x => x.UserName.Equals(model.UserName) && x.Password.Equals(model.Password)).FirstOrDefault();
             if (ModelState.IsValid)
             {
-                var obj = _context.MainAdmin.Where(x => x.UserName.Equals(model.UserName) && x.Password.Equals(model.Password)).FirstOrDefault();
                 if (obj!=null)
                 {
                     return RedirectToAction("Index", "Home");
                 }
+                
             }
+            if (model.UserName == null && model.Password != null)
+            {
+
                 return View(model);
-            return RedirectToAction("Index","Home");
+            }
+            if (model.Password == null && model.UserName != null)
+            {
+                return View(model);
+            }
+            if (model.UserName == null && model.Password == null)
+            {
+                return View(model);
+            }
+            else
+                return View("ErrorLogin");
+            //return RedirectToAction("Index","Home");
         }
     }
 }
