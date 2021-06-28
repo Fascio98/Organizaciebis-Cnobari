@@ -22,11 +22,6 @@ namespace Organizaciebis_Cnobari.Controllers
         {
             return View();
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
         public IActionResult AddNewPerson()
         {
             return View();
@@ -40,20 +35,7 @@ namespace Organizaciebis_Cnobari.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult AddNewOrganization()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult AddNewOrganization(Organization model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            return RedirectToAction(nameof(Index));
-        }
-        public IActionResult EditPerson(int id)
+        /*public IActionResult EditPerson(int id)
         {
             return View();
 
@@ -89,6 +71,6 @@ namespace Organizaciebis_Cnobari.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        }*/
     }
 }

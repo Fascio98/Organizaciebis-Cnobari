@@ -3,9 +3,9 @@
     ViewData["Title"] = "ახალი ორგანიზაციის დამატება";
 }
 <div class="form-horizontal">
-    <form asp-action="AddNewOrganization" asp-controller="Home" method="Post" style="margin-left:300px">
+    <form asp-action="AddNewOrganization" asp-controller="Organization" method="Post" style="margin-left:300px">
         <h6>ახალი ორგანიზაციის დამატება</h6>
-        <partial name="~/Views/Home/Helper/OrganizationForm.cshtml" model="Model"></partial>
+        <partial name="~/Views/Organization/Helper/OrganizationForm.cshtml" model="Model"></partial>
         <button type="submit" class="btn btn-primary">დამატება</button>
     </form>
 </div>
