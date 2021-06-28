@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Organizaciebis_Cnobari.Data;
-using Organizaciebis_Cnobari.Entities;
+using Organizaciebis_Cnobari.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,13 +25,13 @@ namespace Organizaciebis_Cnobari.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddNewOrganization(Organization model)
+        public IActionResult AddNewOrganization(Models.Organization model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            return RedirectToAction(nameof(Index));
+            return View("OrganizationIndex");
         }
     }
 }

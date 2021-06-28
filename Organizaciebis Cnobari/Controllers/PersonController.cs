@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Organizaciebis_Cnobari.Data;
-using Organizaciebis_Cnobari.Entities;
+using Organizaciebis_Cnobari.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace Organizaciebis_Cnobari.Controllers
             {
                 return View(model);
             }
-            return RedirectToAction(nameof(Index));
+            return View("PersonIndex");
         }
     }
 }

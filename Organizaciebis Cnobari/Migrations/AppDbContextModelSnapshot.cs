@@ -21,11 +21,6 @@ namespace Organizaciebis_Cnobari.Migrations
 
             modelBuilder.Entity("Organizaciebis_Cnobari.Entities.MainAdmin", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -33,8 +28,6 @@ namespace Organizaciebis_Cnobari.Migrations
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
 
                     b.ToTable("MainAdmin");
                 });
@@ -72,7 +65,8 @@ namespace Organizaciebis_Cnobari.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("BirthDay")
+                    b.Property<DateTime?>("BirthDay")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
@@ -87,6 +81,10 @@ namespace Organizaciebis_Cnobari.Migrations
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("Photo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TelephoneNumbers")
                         .IsRequired()

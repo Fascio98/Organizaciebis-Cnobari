@@ -23,5 +23,7 @@ namespace Organizaciebis_Cnobari.Entities
         public DateTime? BirthDay { get; set; }
         [Required(ErrorMessage ="შეიყვანეთ ტელეფონის ნომერი")]
         public string TelephoneNumbers { get; set; }
+        [Required(ErrorMessage = "ატვირთეთ ფოტო")]
+        public string Photo { get; set; }
     }
 }
