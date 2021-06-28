@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Organizaciebis_Cnobari.Entities.Organization>
+
+@{
     ViewData["Title"] = "ორგანიზაციების სია";
 }
 <div class="text-center">
@@ -7,3 +9,45 @@
 <div class="mb-4">
     <a asp-controller="Organization" asp-action="AddNewOrganization" class="btn btn-success">ორგანიზაციის დამატება</a>
 </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activity)
+                </td>
+                <td>
+                    <a asp-controller="Organization" asp-action="EditOrganization" asp-route-id="@item.Id" asp-route-PersonalId="@item.Name" class="btn btn-success">ორგანიზაციის რედაქტირება</a>                 
+                    <a asp-controller="Organization" asp-action="DeleteOrganization" asp-route-id="@item.Id" asp-route-PersonalId="@item.Name" class="btn btn-success">ორგანიზაციის წაშლა</a>                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

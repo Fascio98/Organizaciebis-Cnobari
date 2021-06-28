@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Organizaciebis_Cnobari.Entities.Person>
+
+@{
     ViewData["Title"] = "ფიზიკურ პირთა სია";
 }
 <div class="text-center">
@@ -7,3 +9,64 @@
 <div class="mb-4">
     <a asp-controller="Person" asp-action="AddNewPerson" class="btn btn-success">ფიზიკური პირის დამატება</a>
 </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonalID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelephoneNumbers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonalID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TelephoneNumbers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Photo)
+                </td>
+                <td>
+                    <a asp-action="PersonEdit" asp-controller="Person" asp-route-id="@item.Id" asp-route-PersonalId="@item.PersonalID" class="btn btn-success">მომხმარებლის რედაქტირება</a>
+                    <a asp-action="PersonDetail" asp-controller="Person" asp-route-id="@item.Id" asp-route-PersonalId="@item.PersonalID" class="btn btn-success">მომხმარებლის დეტალური დათვალიერება</a>
+                    <a asp-action="PersonDelete" asp-controller="Person" asp-route-id="@item.Id" asp-route-PersonalId="@item.PersonalID" class="btn btn-success">მომხმარებლის წაშლა</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

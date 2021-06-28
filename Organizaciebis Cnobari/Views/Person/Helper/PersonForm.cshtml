@@ -1,4 +1,4 @@
-﻿@model Person
+﻿@model Organizaciebis_Cnobari.Entities.Person
 <div class="form-group row" style="width:500px">
     <div class="col sm-10">
         <label asp-for="Name">სახელი</label>
@@ -37,7 +37,7 @@
 <div class="form-group row" style="width:500px">
     <div class="col sm-10">
         <label asp-for="Photo">სურათი</label>
-        <input type="file" asp-for="Photo" name="Image" value="Upload" class="form-control-file" />
+        <input type="file" asp-for="Photo" name="Image" value="Upload" class="custom-file" />
         <span class="text-danger" asp-validation-for="Photo"></span>
     </div>
 </div>

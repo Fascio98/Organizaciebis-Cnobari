@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Organizaciebis_Cnobari.Data;
-using Organizaciebis_Cnobari.Models;
+using Organizaciebis_Cnobari.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,8 @@ namespace Organizaciebis_Cnobari.Controllers
         }
         public IActionResult PersonIndex()
         {
-            return View();
+            var Persons = _context.People.ToList();
+            return View(Persons);
         }
         public IActionResult AddNewPerson()
         {
@@ -30,7 +31,9 @@ namespace Organizaciebis_Cnobari.Controllers
             {
                 return View(model);
             }
-            return View("PersonIndex");
+            _context.People.Add(model);
+            _context.SaveChanges();
+            return View(nameof(PersonIndex));
         }
     }
 }

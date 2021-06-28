@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,7 +24,6 @@ namespace Organizaciebis_Cnobari.Entities
         public DateTime? BirthDay { get; set; }
         [Required(ErrorMessage ="შეიყვანეთ ტელეფონის ნომერი")]
         public string TelephoneNumbers { get; set; }
-        [Required(ErrorMessage = "ატვირთეთ ფოტო")]
         public string Photo { get; set; }
     }
 }

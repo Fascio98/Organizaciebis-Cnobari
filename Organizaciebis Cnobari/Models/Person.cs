@@ -24,5 +24,6 @@ namespace Organizaciebis_Cnobari.Models
         public string TelephoneNumbers { get; set; }
         [Required(ErrorMessage = "ატვირთეთ ფოტო")]
         public string Photo { get; set; }
+
     }
 }

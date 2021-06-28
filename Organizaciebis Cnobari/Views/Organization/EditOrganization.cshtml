@@ -1,9 +1,12 @@
-﻿@model Organization
+﻿@model Organizaciebis_Cnobari.Entities.Organization
 @{
-    ViewData["Title"] = "ორგანიზაციის ცვლილება";
+    ViewData["Title"] = "ორგანიზაციის რედაქტირება";
 }
-<form asp-action="Edit" asp-controller="Home" method="Post" style="margin-left:300px">
-    <input type="hidden" asp-for="Id" />  
-    <partial name="~/Views/Home/Helper/OrganizationForm.cshtml" model="Model"></partial>
-    <button type="submit" class="btn btn-primary">დამატება</button>
-</form>
+<div class="form-horizontal">
+    <form asp-action="EditOrganization" asp-controller="Organization" method="post" style="margin-left:300px">
+        <input type="hidden" asp-for="Id" />
+        <h6>ორგანიზაციის რედაქტირება</h6>
+        <partial name="~/Views/Organization/Helper/OrganizationForm.cshtml" model="Model"></partial>
+        <button type="submit" class="btn btn-primary">დამატება</button>
+    </form>
+</div>
