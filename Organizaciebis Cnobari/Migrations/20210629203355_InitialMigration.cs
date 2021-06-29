@@ -41,10 +41,11 @@ namespace Organizaciebis_Cnobari.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PersonalID = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
                     BirthDay = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TelephoneNumbers = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Photo = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TelephoneNumbers = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -13,5 +13,6 @@ namespace Organizaciebis_Cnobari.Models
         public string UserName { get; set; }
         [Required(ErrorMessage = "საჭირო ველი")]
         public string Password { get; set; }
+        
     }
 }

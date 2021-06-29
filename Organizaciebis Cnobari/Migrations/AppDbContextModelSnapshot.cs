@@ -65,9 +65,16 @@ namespace Organizaciebis_Cnobari.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("BirthDay")
-                        .IsRequired()
+                    b.Property<DateTime>("BirthDay")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -81,10 +88,6 @@ namespace Organizaciebis_Cnobari.Migrations
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
-
-                    b.Property<string>("Photo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TelephoneNumbers")
                         .IsRequired()

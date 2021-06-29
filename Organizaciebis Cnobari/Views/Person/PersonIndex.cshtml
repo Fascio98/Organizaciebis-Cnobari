@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Organizaciebis_Cnobari.Entities.Person>
+﻿@model PaginatedList<Organizaciebis_Cnobari.Entities.Person>
 
 @{
     ViewData["Title"] = "ფიზიკურ პირთა სია";
@@ -11,7 +11,7 @@
 </div>
 <table class="table">
     <thead>
-        <tr>            
+        <tr>
             <th>
                 @Html.DisplayName("სახელი")
             </th>
@@ -20,14 +20,14 @@
             </th>
             <th>
                 @Html.DisplayName("პირადი ნომერი")
-            </th>                                   
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>                
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -36,13 +36,27 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PersonalID)
-                </td>                
+                </td>
                 <td>
-                    <a asp-action="PersonEdit" asp-controller="Person" asp-route-id="@item.Id" asp-route-PersonalId="@item.PersonalID" class="btn btn-success">მომხმარებლის რედაქტირება</a>
-                    <a asp-action="PersonDetail" asp-controller="Person" asp-route-id="@item.Id" asp-route-PersonalId="@item.PersonalID" class="btn btn-success">მომხმარებლის დეტალური დათვალიერება</a>
-                    <a asp-action="PersonDelete" asp-controller="Person" asp-route-id="@item.Id" asp-route-PersonalId="@item.PersonalID" class="btn btn-success">მომხმარებლის წაშლა</a>
+                    <a asp-controller="Person" asp-action="EditPerson" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-LastName="@item.LastName" asp-route-Gender="@item.Gender"
+                       asp-route-PersonalId="@item.PersonalID" asp-route-BirthDay="@item.BirthDay" asp-route-City="@item.City" asp-route-TelephoneNumbers="@item.TelephoneNumbers" class="btn btn-success">მომხმარებლის რედაქტირება</a>
+                    <a asp-controller="Person" asp-action="PersonDetails" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-LastName="@item.LastName" asp-route-Gender="@item.Gender"
+                       asp-route-PersonalId="@item.PersonalID" asp-route-BirthDay="@item.BirthDay" asp-route-City="@item.City" asp-route-TelephoneNumbers="@item.TelephoneNumbers" class="btn btn-success">მომხმარებლის დეტალური დათვალიერება</a>
+                    <a asp-controller="Person" asp-action="DeletePerson" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-LastName="@item.LastName" asp-route-Gender="@item.Gender"
+                       asp-route-PersonalId="@item.PersonalID" asp-route-BirthDay="@item.BirthDay" asp-route-City="@item.City" asp-route-TelephoneNumbers="@item.TelephoneNumbers" class="btn btn-success">მომხმარებლის წაშლა</a>
+                    <a asp-controller="Person" asp-action="AddPhoto" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-LastName="@item.LastName" asp-route-Gender="@item.Gender"
+                       asp-route-PersonalId="@item.PersonalID" asp-route-BirthDay="@item.BirthDay" asp-route-City="@item.City" asp-route-TelephoneNumbers="@item.TelephoneNumbers" class="btn btn-success">ფოტოს დამატება</a>
+                    <a asp-controller="Person" asp-action="ChangePhoto" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-LastName="@item.LastName" asp-route-Gender="@item.Gender"
+                       asp-route-PersonalId="@item.PersonalID" asp-route-BirthDay="@item.BirthDay" asp-route-City="@item.City" asp-route-TelephoneNumbers="@item.TelephoneNumbers" class="btn btn-success">ფოტოს წაშლა</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NextPage ? "disabled" : "";
+}
+
+<a asp-action="PersonIndex" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-default @prevDisabled">წინა</a>
+<a asp-action="PersonIndex" asp-route-pageNumber="@(Model.PageIndex+1)" class="btn btn-default @nextDisabled">შემდეგი</a>

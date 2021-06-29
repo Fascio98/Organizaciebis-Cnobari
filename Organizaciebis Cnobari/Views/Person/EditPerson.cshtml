@@ -1,17 +1,25 @@
-﻿@model Person
-@{ 
-    ViewData["Title"] = "ფიზიკური პირის ძირითადი ინფორმაციის ცვლილება";
+﻿@model Organizaciebis_Cnobari.Entities.Person
+@{
+    ViewData["Title"] = "ფიზიკური პირის რედაქტირება";
 }
-
-@if(ViewBag.Message!=null)
+@if (ViewBag.Message1 != null)
 {
     <div class="alert alert-success" role="alert">
-        @ViewBag.Message
+        @ViewBag.Message1
     </div>
 }
+<div class="form-horizontal">
+    <form asp-action="EditPerson" asp-controller="Person" method="post" style="margin-left:300px">
+        <input type="hidden" value="@Model" />
+        <h6>ორგანიზაციის რედაქტირება</h6>
+        <partial name="~/Views/Person/Helper/PersonForm.cshtml" model="Model"></partial>
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.Message
+            </div>
+        }
+        <button type="submit" class="btn btn-primary">რედაქტირება</button>
+    </form>
 
-<form asp-action="Edit" asp-controller="Home" method="Post" style="margin-left:300px">
-    <input type="hidden" asp-for="Id"/>
-    <partial name="~/Views/Home/Helper/PersonForm.cshtml" model="Model"></partial>
-    <button type="submit" class="btn btn-primary">დამატება</button>
-</form>
+</div>

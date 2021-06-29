@@ -15,6 +15,13 @@
 </div>
 <div class="form-group row" style="width:500px">
     <div class="col sm-10">
+        <label asp-for="Gender">სქესი</label>
+        <input type="text" asp-for="Gender" class="form-control" />
+        <span class="text-danger" asp-validation-for="Gender"></span>
+    </div>
+</div>
+<div class="form-group row" style="width:500px">
+    <div class="col sm-10">
         <label asp-for="PersonalID">პირადი ნომერი</label>
         <input type="text" asp-for="PersonalID" class="form-control" />
         <span class="text-danger" asp-validation-for="PersonalID"></span>
@@ -29,16 +36,17 @@
 </div>
 <div class="form-group row" style="width:500px">
     <div class="col sm-10">
+        <label asp-for="City">ქალაქი</label>
+        <input type="text" asp-for="City" class="form-control" />
+        <span class="text-danger" asp-validation-for="City"></span>
+    </div>
+</div>
+<div class="form-group row" style="width:500px">
+    <div class="col sm-10">
         <label asp-for="TelephoneNumbers">ტელეფონის ნომრები</label>
         <input type="text" asp-for="TelephoneNumbers" class="form-control" />
         <span class="text-danger" asp-validation-for="TelephoneNumbers"></span>
     </div>
 </div>
-<div class="form-group row" style="width:500px">
-    <div class="col sm-10">
-        <label asp-for="Photo">სურათი</label>
-        <input type="file" asp-for="Photo" name="Image" value="Upload" class="custom-file" />
-        <span class="text-danger" asp-validation-for="Photo"></span>
-    </div>
-</div>
+
 
