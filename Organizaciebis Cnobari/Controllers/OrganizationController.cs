@@ -18,17 +18,16 @@ namespace Organizaciebis_Cnobari.Controllers
             _context = context;
         }
 
-        public IActionResult OrganizationIndex()
+        public async Task<IActionResult> OrganizationIndex(int pageNumber=1)
         {
-            var Organizations = _context.Organizations.ToList();
-            return View(Organizations);
+            return View(await Organizaciebis_Cnobari.Models.PaginatedList<Entities.Organization>.CreateAsync(_context.Organizations,pageNumber,6));
         }
-        public IActionResult AddNewOrganization()
+        public async Task<IActionResult> AddNewOrganization()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult AddNewOrganization(Organization model)
+        public async Task<IActionResult> AddNewOrganization(Organization model)
         {
             if (!ModelState.IsValid)
             {
@@ -39,14 +38,14 @@ namespace Organizaciebis_Cnobari.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(OrganizationIndex));
         }
-        
-        public IActionResult EditOrganization(int id)
+        //[HttpGet]
+        public async Task<IActionResult> EditOrganization(int id)
         {
             var obj = _context.Organizations.Where(x => x.Id == id).FirstOrDefault();
             return View(obj);
         }
         [HttpPost]
-        public IActionResult EditOrganization(Organization model)
+        public async Task<IActionResult> EditOrganization(Organization model)
         {          
             if (!ModelState.IsValid)
             {
@@ -61,7 +60,7 @@ namespace Organizaciebis_Cnobari.Controllers
             _context.SaveChanges();
             return View(model);
         }
-        
+      
         public IActionResult DeleteOrganization()
         {
             return View();

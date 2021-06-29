@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Organizaciebis_Cnobari.Entities.Organization>
+﻿@model PaginatedList<Organizaciebis_Cnobari.Entities.Organization>
 
 @{
     ViewData["Title"] = "ორგანიზაციების სია";
@@ -12,7 +12,7 @@
 <table class="table">
     <thead>
         <tr>
-            
+
             <th>
                 @Html.DisplayName("სახელი")
             </th>
@@ -29,7 +29,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -40,10 +40,18 @@
                     @Html.DisplayFor(modelItem => item.Activity)
                 </td>
                 <td>
-                    <a asp-controller="Organization" asp-action="EditOrganization" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-Address="@item.Address" asp-route-Activity="@item.Activity" class="btn btn-success">ორგანიზაციის რედაქტირება</a>                 
-                    <a asp-controller="Organization" asp-action="DeleteOrganization" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-Address="@item.Address" asp-route-Activity="@item.Activity" class="btn btn-success">ორგანიზაციის წაშლა</a>                    
+                    <a asp-controller="Organization" asp-action="EditOrganization" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-Address="@item.Address" asp-route-Activity="@item.Activity" class="btn btn-success">ორგანიზაციის რედაქტირება</a>
+                    <a asp-controller="Organization" asp-action="DeleteOrganization" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-Address="@item.Address" asp-route-Activity="@item.Activity" class="btn btn-success">ორგანიზაციის წაშლა</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NextPage ? "disabled" : "";
+}
+
+<a asp-action="OrganizationIndex" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-default @prevDisabled">წინა</a>
+<a asp-action="OrganizationIndex" asp-route-pageNumber="@(Model.PageIndex+1)" class="btn btn-default @nextDisabled">შემდეგი</a>
+
