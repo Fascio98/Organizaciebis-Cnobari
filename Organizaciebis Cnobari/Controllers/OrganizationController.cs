@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Organizaciebis_Cnobari.Data;
 using Organizaciebis_Cnobari.Entities;
 using System;
@@ -38,27 +39,34 @@ namespace Organizaciebis_Cnobari.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(OrganizationIndex));
         }
-        public IActionResult EditOrganization()
+        
+        public IActionResult EditOrganization(int id)
         {
-            return View();
+            var obj = _context.Organizations.Where(x => x.Id == id).FirstOrDefault();
+            return View(obj);
         }
         [HttpPost]
-       /* public IActionResult EditOrganization(Organization model)
-        {
-            var obj = _context.Organizations.Where(x => x.Id.Equals(model.Id));
+        public IActionResult EditOrganization(Organization model)
+        {          
             if (!ModelState.IsValid)
             {
+                ViewBag.Message = "ჩანაწერები ვერ განახლდა!";
                 return View(model);
             }
-            return View(obj);
-        }*/
-
+            ViewBag.Message1 = "ჩანაწერები წარმატებით განახლდა!";
+            _context.Organizations.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().Id = model.Id;
+            _context.Organizations.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().Name = model.Name;
+            _context.Organizations.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().Address = model.Address;
+            _context.Organizations.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().Activity = model.Activity;
+            _context.SaveChanges();
+            return View(model);
+        }
+        
         public IActionResult DeleteOrganization()
         {
             return View();
         }
         [HttpGet]
-        //[HttpPost]
         public IActionResult DeleteOrganization(Organization model)
         {
             var obj = model;

@@ -2,11 +2,24 @@
 @{
     ViewData["Title"] = "ორგანიზაციის რედაქტირება";
 }
+@if (ViewBag.Message1 != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Message1
+    </div>
+}
 <div class="form-horizontal">
     <form asp-action="EditOrganization" asp-controller="Organization" method="post" style="margin-left:300px">
-        <input type="hidden" asp-for="Id" />
+        <input type="hidden" value="@Model" />
         <h6>ორგანიზაციის რედაქტირება</h6>
         <partial name="~/Views/Organization/Helper/OrganizationForm.cshtml" model="Model"></partial>
-        <button type="submit" class="btn btn-primary">დამატება</button>
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.Message
+            </div>
+        }
+        <button type="submit" class="btn btn-primary">რედაქტირება</button>
     </form>
+
 </div>
