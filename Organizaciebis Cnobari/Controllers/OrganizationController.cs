@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Organizaciebis_Cnobari.Controllers
 {
@@ -56,13 +57,20 @@ namespace Organizaciebis_Cnobari.Controllers
         {
             return View();
         }
-        [HttpDelete]
+        [HttpGet]
+        //[HttpPost]
         public IActionResult DeleteOrganization(Organization model)
         {
             var obj = model;
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             _context.Organizations.Remove(obj);
             _context.SaveChanges();
             return RedirectToAction(nameof(OrganizationIndex));
         }
+        
+
     }
 }

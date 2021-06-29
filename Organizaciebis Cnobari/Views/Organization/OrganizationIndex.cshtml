@@ -12,17 +12,15 @@
 <table class="table">
     <thead>
         <tr>
+            
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayName("სახელი")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayName("მისამართი")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Activity)
+                @Html.DisplayName("საქმიანობა")
             </th>
             <th></th>
         </tr>
@@ -31,9 +29,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelitem => item.Id)
-                </td>
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -44,8 +40,8 @@
                     @Html.DisplayFor(modelItem => item.Activity)
                 </td>
                 <td>
-                    <a asp-controller="Organization" asp-action="EditOrganization" asp-route-id="@item.Id" asp-route-PersonalId="@item.Name" class="btn btn-success">ორგანიზაციის რედაქტირება</a>                 
-                    <a asp-controller="Organization" asp-action="DeleteOrganization" asp-route-id="@item.Id" asp-route-PersonalId="@item.Name" class="btn btn-success">ორგანიზაციის წაშლა</a>                    
+                    <a asp-controller="Organization" asp-action="EditOrganization" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-Address="@item.Address" asp-route-Activity="@item.Activity" class="btn btn-success">ორგანიზაციის რედაქტირება</a>                 
+                    <a asp-controller="Organization" asp-action="DeleteOrganization" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-Address="@item.Address" asp-route-Activity="@item.Activity" class="btn btn-success">ორგანიზაციის წაშლა</a>                    
                 </td>
             </tr>
         }

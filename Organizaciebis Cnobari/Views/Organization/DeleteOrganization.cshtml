@@ -1,0 +1,10 @@
+﻿@model Organizaciebis_Cnobari.Entities.Organization
+
+<div>
+    
+    <form asp-action="DeleteOrganization" asp-controller="Organization">
+        <input type="hidden" value="@Model"/>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="OrganizationIndex">Back to List</a>
+    </form>
+</div>
