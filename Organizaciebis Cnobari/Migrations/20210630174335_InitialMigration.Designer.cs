@@ -10,7 +10,7 @@ using Organizaciebis_Cnobari.Data;
 namespace Organizaciebis_Cnobari.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210630103458_InitialMigration")]
+    [Migration("20210630174335_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

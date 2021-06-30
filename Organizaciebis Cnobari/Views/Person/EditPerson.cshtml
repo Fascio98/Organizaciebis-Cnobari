@@ -2,14 +2,8 @@
 @{
     ViewData["Title"] = "ფიზიკური პირის რედაქტირება";
 }
-@if (ViewBag.Message1 != null)
-{
-    <div class="alert alert-success" role="alert">
-        @ViewBag.Message1
-    </div>
-}
 <div class="form-horizontal">
-    <form asp-action="EditPerson" asp-controller="Person" method="post" style="margin-left:300px">
+    <form asp-action="EditPerson" asp-controller="Person" method="post" enctype="multipart/form-data" style="margin-left:300px">
         <input type="hidden" value="@Model" />
         <h6>ორგანიზაციის რედაქტირება</h6>
         <partial name="~/Views/Person/Helper/PersonForm.cshtml" model="Model"></partial>

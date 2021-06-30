@@ -29,10 +29,11 @@ namespace Organizaciebis_Cnobari.Models
         public string City { get; set; }
         [Required(ErrorMessage = "შეიყვანეთ ტელეფონის ნომერი")]
         public string TelephoneNumbers { get; set; }
-        [Required(ErrorMessage = "შეიყვანეთ ტელეფონის ნომერი")]
+        [Required(ErrorMessage = "ატვირთეთ ფოტო! ")]
         public string Image { get; set; }
         
         [NotMapped]
+        [Required]
         public IFormFile ImageFile { get; set; }
 
     }

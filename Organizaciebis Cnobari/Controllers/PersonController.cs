@@ -34,41 +34,55 @@ namespace Organizaciebis_Cnobari.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddNewPerson([Bind("Id,Name,LastName,Gender,PersonalID,BirthDay,City,TelephoneNumbers,ImageFile")] Person model)
+        public async Task<IActionResult> AddNewPerson(Person model)
         {
-            string wwwRootPath = _webHostEnvironment.WebRootPath;
-            string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
-            string Extension = Path.GetExtension(model.ImageFile.FileName);
-            model.Image = fileName = fileName + DateTime.Now.ToString("yymmssffff") + Extension;
-            string path = Path.Combine(wwwRootPath + "/images", fileName);
-            using (var fileStream = new FileStream(path, FileMode.Create))
+            if (ModelState.IsValid)
             {
-                await model.ImageFile.CopyToAsync(fileStream);
-            }
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
 
-            _context.People.Add(model);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(PersonIndex));
+                string Extension = Path.GetExtension(model.ImageFile.FileName);
+                model.Image = fileName = fileName + DateTime.Now.ToString("yymmssffff") + Extension;
+                string path = Path.Combine(wwwRootPath + "/images/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await model.ImageFile.CopyToAsync(fileStream);
+                }
+
+                _context.People.Add(model);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(PersonIndex));
+            }
+            return View(model);
         }
         public async Task<IActionResult> EditPerson(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var obj = _context.People.Where(x => x.Id == id).FirstOrDefault();
             return View(obj);
         }
         [HttpPost]
-        public async Task<IActionResult> EditPerson([Bind("Id,Name,LastName,Gender,PersonalID,BirthDay,City,TelephoneNumbers,ImageFile")] Person model)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPerson(Person model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             string wwwRootPath = _webHostEnvironment.WebRootPath;
-            string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.Name) ;
-            string Extension = Path.GetExtension(model.ImageFile.Name);
+            string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
+            string Extension = Path.GetExtension(model.ImageFile.FileName);
             model.Image = fileName = fileName + DateTime.Now.ToString("yymmssffff") + Extension;
-            string path = Path.Combine(wwwRootPath + "/images", fileName);
+            string path = Path.Combine(wwwRootPath + "/images/", fileName);
             using (var fileStream = new FileStream(path, FileMode.Create))
             {
                 await model.ImageFile.CopyToAsync(fileStream);
             }
 
-            _context.People.Update(model);
+            _context.People.Update(model);        
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(PersonIndex));
         }
@@ -92,15 +106,5 @@ namespace Organizaciebis_Cnobari.Controllers
             var obj = _context.People.Find(id);           
             return View(obj);
         }
-        /*
-         <div class="col sm-10">
-        <label asp-for="Image">ტელეფონის ნომრები</label>
-        <div class="custom-file">
-            <input asp-for="Image" class="custom-file-input" id="customFile" />
-            <label class="custom-file-label" for="customFile">აირჩიე ფოტო</label>
-        </div>
-        <span class="text-danger" asp-validation-for="Image"></span>
-        </div>
-         */
     }
 }
