@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Organizaciebis_Cnobari.Data;
-using Organizaciebis_Cnobari.Entities;
+using Organizaciebis_Cnobari.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace Organizaciebis_Cnobari.Controllers
             {
                 return View();
             }
-            return View(await Organizaciebis_Cnobari.Models.PaginatedList<Entities.Organization>.CreateAsync(_context.Organizations,pageNumber,6));
+            return View(await PaginatedList<Organization>.CreateAsync(_context.Organizations,pageNumber,6));
         }
         public async Task<IActionResult> AddNewOrganization()
         {

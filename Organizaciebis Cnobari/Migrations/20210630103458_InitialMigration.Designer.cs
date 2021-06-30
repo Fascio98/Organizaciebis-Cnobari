@@ -10,7 +10,7 @@ using Organizaciebis_Cnobari.Data;
 namespace Organizaciebis_Cnobari.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210629203355_InitialMigration")]
+    [Migration("20210630103458_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,8 +21,11 @@ namespace Organizaciebis_Cnobari.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Organizaciebis_Cnobari.Entities.MainAdmin", b =>
+            modelBuilder.Entity("Organizaciebis_Cnobari.Models.MainAdmin", b =>
                 {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -34,7 +37,7 @@ namespace Organizaciebis_Cnobari.Migrations
                     b.ToTable("MainAdmin");
                 });
 
-            modelBuilder.Entity("Organizaciebis_Cnobari.Entities.Organization", b =>
+            modelBuilder.Entity("Organizaciebis_Cnobari.Models.Organization", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,7 +63,7 @@ namespace Organizaciebis_Cnobari.Migrations
                     b.ToTable("Organizations");
                 });
 
-            modelBuilder.Entity("Organizaciebis_Cnobari.Entities.Person", b =>
+            modelBuilder.Entity("Organizaciebis_Cnobari.Models.Person", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,6 +78,10 @@ namespace Organizaciebis_Cnobari.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,9 +29,11 @@ namespace Organizaciebis_Cnobari.Entities
         public string City { get; set; }
         [Required(ErrorMessage ="შეიყვანეთ ტელეფონის ნომერი")]
         public string TelephoneNumbers { get; set; }
-        
-        //[Required(ErrorMessage = "ატვირთეთ ფოტო")]
-        //public string Image { get; set; }
+        [Required(ErrorMessage = "შეიყვანეთ ტელეფონის ნომერი")]
+        public string Image { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
+
 
     }
 }

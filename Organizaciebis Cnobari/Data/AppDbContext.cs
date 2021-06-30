@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Organizaciebis_Cnobari.Entities;
+using Organizaciebis_Cnobari.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

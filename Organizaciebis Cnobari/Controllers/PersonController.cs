@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Organizaciebis_Cnobari.Data;
-using Organizaciebis_Cnobari.Entities;
+using Organizaciebis_Cnobari.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,9 +13,11 @@ namespace Organizaciebis_Cnobari.Controllers
     public class PersonController : Controller
     {
         private readonly AppDbContext _context;
-        public PersonController(AppDbContext context)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public PersonController(AppDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
         
         public async Task<IActionResult> PersonIndex(int pageNumber = 1)
@@ -23,22 +26,28 @@ namespace Organizaciebis_Cnobari.Controllers
             {
                 return View();
             }
-            return View(await Organizaciebis_Cnobari.Models.PaginatedList<Entities.Person>.CreateAsync(_context.People, pageNumber, 6));
+            return View(await PaginatedList<Person>.CreateAsync(_context.People, pageNumber, 6));
         }
         public async Task<IActionResult> AddNewPerson()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> AddNewPerson(Person model)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddNewPerson([Bind("Id,Name,LastName,Gender,PersonalID,BirthDay,City,TelephoneNumbers,ImageFile")] Person model)
         {
-            var obj = model;
-            if (!ModelState.IsValid)
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
+            string Extension = Path.GetExtension(model.ImageFile.FileName);
+            model.Image = fileName = fileName + DateTime.Now.ToString("yymmssffff") + Extension;
+            string path = Path.Combine(wwwRootPath + "/images", fileName);
+            using (var fileStream = new FileStream(path, FileMode.Create))
             {
-                return View(model);
+                await model.ImageFile.CopyToAsync(fileStream);
             }
-            _context.People.Add(obj);
-            _context.SaveChanges();
+
+            _context.People.Add(model);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(PersonIndex));
         }
         public async Task<IActionResult> EditPerson(int id)
@@ -47,24 +56,21 @@ namespace Organizaciebis_Cnobari.Controllers
             return View(obj);
         }
         [HttpPost]
-        public async Task<IActionResult> EditPerson(Person model)
+        public async Task<IActionResult> EditPerson([Bind("Id,Name,LastName,Gender,PersonalID,BirthDay,City,TelephoneNumbers,ImageFile")] Person model)
         {
-            if (!ModelState.IsValid)
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.Name) ;
+            string Extension = Path.GetExtension(model.ImageFile.Name);
+            model.Image = fileName = fileName + DateTime.Now.ToString("yymmssffff") + Extension;
+            string path = Path.Combine(wwwRootPath + "/images", fileName);
+            using (var fileStream = new FileStream(path, FileMode.Create))
             {
-                ViewBag.Message = "ჩანაწერები ვერ განახლდა!";
-                return View(model);
+                await model.ImageFile.CopyToAsync(fileStream);
             }
-            ViewBag.Message1 = "ჩანაწერები წარმატებით განახლდა!";
-            _context.People.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().Id = model.Id;
-            _context.People.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().Name = model.Name;
-            _context.People.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().LastName = model.LastName;
-            _context.People.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().Gender = model.Gender;
-            _context.People.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().PersonalID = model.PersonalID;
-            _context.People.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().BirthDay = model.BirthDay;
-            _context.People.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().City = model.City;
-            _context.People.Where(x => x.Id.Equals(model.Id)).FirstOrDefault().TelephoneNumbers = model.TelephoneNumbers;
-            _context.SaveChanges();
-            return View(model);
+
+            _context.People.Update(model);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(PersonIndex));
         }
         public IActionResult DeletePerson()
         {
@@ -72,13 +78,8 @@ namespace Organizaciebis_Cnobari.Controllers
         }
         [HttpGet]
         public IActionResult DeletePerson(Person model)
-        {
-            var obj = model;
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            _context.People.Remove(obj);
+        {          
+            _context.People.Remove(model);
             _context.SaveChanges();
             return RedirectToAction(nameof(PersonIndex));
         }
