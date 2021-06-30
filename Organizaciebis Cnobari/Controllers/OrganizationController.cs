@@ -20,6 +20,10 @@ namespace Organizaciebis_Cnobari.Controllers
 
         public async Task<IActionResult> OrganizationIndex(int pageNumber=1)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             return View(await Organizaciebis_Cnobari.Models.PaginatedList<Entities.Organization>.CreateAsync(_context.Organizations,pageNumber,6));
         }
         public async Task<IActionResult> AddNewOrganization()

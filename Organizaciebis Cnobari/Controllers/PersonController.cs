@@ -19,6 +19,10 @@ namespace Organizaciebis_Cnobari.Controllers
         
         public async Task<IActionResult> PersonIndex(int pageNumber = 1)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             return View(await Organizaciebis_Cnobari.Models.PaginatedList<Entities.Person>.CreateAsync(_context.People, pageNumber, 6));
         }
         public async Task<IActionResult> AddNewPerson()
@@ -66,16 +70,24 @@ namespace Organizaciebis_Cnobari.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpGet]
         public IActionResult DeletePerson(Person model)
         {
             var obj = model;
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             _context.People.Remove(obj);
             _context.SaveChanges();
             return RedirectToAction(nameof(PersonIndex));
         }
         public IActionResult PersonDetails(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var obj = _context.People.Find(id);           
             return View(obj);
         }
