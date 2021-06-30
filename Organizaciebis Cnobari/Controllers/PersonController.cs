@@ -36,7 +36,9 @@ namespace Organizaciebis_Cnobari.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddNewPerson(Person model)
         {
-            if (ModelState.IsValid)
+            
+            var files = HttpContext.Request.Form.Files;
+            if(files.Count!=0)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
@@ -68,23 +70,25 @@ namespace Organizaciebis_Cnobari.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPerson(Person model)
         {
-            if (!ModelState.IsValid)
+            var files = HttpContext.Request.Form.Files;
+            if (files.Count != 0)
             {
-                return View(model);
-            }
-            string wwwRootPath = _webHostEnvironment.WebRootPath;
-            string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
-            string Extension = Path.GetExtension(model.ImageFile.FileName);
-            model.Image = fileName = fileName + DateTime.Now.ToString("yymmssffff") + Extension;
-            string path = Path.Combine(wwwRootPath + "/images/", fileName);
-            using (var fileStream = new FileStream(path, FileMode.Create))
-            {
-                await model.ImageFile.CopyToAsync(fileStream);
-            }
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
 
-            _context.People.Update(model);        
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(PersonIndex));
+                string Extension = Path.GetExtension(model.ImageFile.FileName);
+                model.Image = fileName = fileName + DateTime.Now.ToString("yymmssffff") + Extension;
+                string path = Path.Combine(wwwRootPath + "/images/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await model.ImageFile.CopyToAsync(fileStream);
+                }
+
+                _context.People.Update(model);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(PersonIndex));
+            }
+            return View(model);
         }
         public IActionResult DeletePerson()
         {
@@ -93,6 +97,8 @@ namespace Organizaciebis_Cnobari.Controllers
         [HttpGet]
         public IActionResult DeletePerson(Person model)
         {          
+
+            
             _context.People.Remove(model);
             _context.SaveChanges();
             return RedirectToAction(nameof(PersonIndex));
