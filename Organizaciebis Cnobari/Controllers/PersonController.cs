@@ -95,41 +95,41 @@ namespace Organizaciebis_Cnobari.Controllers
                     await model.ImageFile.CopyToAsync(fileStream);
                 }
                 int count = _context.People.Count();
-                //var obj = _context.People.Where(x => x.Id == model.Id).FirstOrDefault();
+                
                 if (count > 0)
-                {
-                    for (int i = 0; i < count; i++)
                     {
-                        if (_context.People.ToList()[i].PersonalID == model.PersonalID && _context.People.Where(x => x.Id == model.Id).FirstOrDefault().PersonalID==model.PersonalID)
+                        for (int i = 0; i < count; i++)
                         {
-                            _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Id = model.Id;
-                            _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Name = model.Name;
-                            _context.People.Where(x => x.Id == model.Id).FirstOrDefault().LastName = model.LastName;
-                            _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Gender = model.Gender;
-                            _context.People.Where(x => x.Id == model.Id).FirstOrDefault().PersonalID = model.PersonalID;
-                            _context.People.Where(x => x.Id == model.Id).FirstOrDefault().City = model.City;
-                            _context.People.Where(x => x.Id == model.Id).FirstOrDefault().TelephoneNumbers = model.TelephoneNumbers;
-                            _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Image = model.Image;
-                            await _context.SaveChangesAsync();
-                            return RedirectToAction(nameof(PersonIndex));
-                        }
-                        if (_context.People.ToList()[i].PersonalID == model.PersonalID && _context.People.Where(x => x.Id == model.Id).FirstOrDefault().PersonalID != model.PersonalID)
-                        {
-                            ViewBag.Message = "ფიზიკური პირი ასეთი პირადი ნომერით უკვე დამატებულია!";
-                            return View(model);
+                            if (_context.People.ToList()[i].PersonalID == model.PersonalID && _context.People.Where(x => x.Id == model.Id).FirstOrDefault().PersonalID == model.PersonalID)
+                            {
+                                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Id = model.Id;
+                                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Name = model.Name;
+                                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().LastName = model.LastName;
+                                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Gender = model.Gender;
+                                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().PersonalID = model.PersonalID;
+                                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().City = model.City;
+                                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().TelephoneNumbers = model.TelephoneNumbers;
+                                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Image = model.Image;
+                                await _context.SaveChangesAsync();
+                                return RedirectToAction(nameof(PersonIndex));
+                            }
+                            if (_context.People.ToList()[i].PersonalID == model.PersonalID && _context.People.Where(x => x.Id == model.Id).FirstOrDefault().PersonalID != model.PersonalID)
+                            {
+                                ViewBag.Message = "ფიზიკური პირი ასეთი პირადი ნომერით უკვე დამატებულია!";
+                                return View(model);
+                            }
                         }
                     }
-                }
-                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Id = model.Id;
-                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Name = model.Name;
-                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().LastName = model.LastName;
-                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Gender = model.Gender;
-                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().PersonalID = model.PersonalID;
-                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().City = model.City;
-                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().TelephoneNumbers = model.TelephoneNumbers;
-                _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Image = model.Image;
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(PersonIndex));
+                    _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Id = model.Id;
+                    _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Name = model.Name;
+                    _context.People.Where(x => x.Id == model.Id).FirstOrDefault().LastName = model.LastName;
+                    _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Gender = model.Gender;
+                    _context.People.Where(x => x.Id == model.Id).FirstOrDefault().PersonalID = model.PersonalID;
+                    _context.People.Where(x => x.Id == model.Id).FirstOrDefault().City = model.City;
+                    _context.People.Where(x => x.Id == model.Id).FirstOrDefault().TelephoneNumbers = model.TelephoneNumbers;
+                    _context.People.Where(x => x.Id == model.Id).FirstOrDefault().Image = model.Image;
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(PersonIndex));
             }
             return View(model);
         }
