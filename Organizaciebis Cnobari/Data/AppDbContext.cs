@@ -12,6 +12,7 @@ namespace Organizaciebis_Cnobari.Data
         public DbSet<Person> People { get; set; }
         public DbSet<MainAdmin> MainAdmin { get; set; }
         public DbSet<Organization> Organizations { get; set; }
+        public DbSet<PersonOrganization> PersonOrganizations { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         {
 
@@ -20,6 +21,7 @@ namespace Organizaciebis_Cnobari.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<MainAdmin>().HasNoKey();
+         
         }
     }
 }

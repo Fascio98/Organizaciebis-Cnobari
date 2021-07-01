@@ -17,5 +17,6 @@ namespace Organizaciebis_Cnobari.Models
         [Required(ErrorMessage = "საჭირო ველი")]
         [StringLength(maximumLength: 500, ErrorMessage = "ველის სიგრძე არ უნდა აღემატებოდეს 500-ს!")]
         public string Activity { get; set; }
+        public PersonOrganization OrganizationPerson { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Organizaciebis_Cnobari.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -30,8 +31,11 @@ namespace Organizaciebis_Cnobari.Entities
         [Required(ErrorMessage ="შეიყვანეთ ტელეფონის ნომერი")]
         public string TelephoneNumbers { get; set; }
         [Required(ErrorMessage = "შეიყვანეთ ტელეფონის ნომერი")]
-        public string Image { get; set; }
+        //public int PersonOrganizationId { get; set; }
+        public PersonOrganization MyPersonOrganization { get; set; }
+
         [NotMapped]
+        [Required]
         public IFormFile ImageFile { get; set; }
 
 

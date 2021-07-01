@@ -10,7 +10,7 @@ using Organizaciebis_Cnobari.Data;
 namespace Organizaciebis_Cnobari.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210630174335_InitialMigration")]
+    [Migration("20210701141123_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,7 +58,12 @@ namespace Organizaciebis_Cnobari.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrganizationPersonId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OrganizationPersonId");
 
                     b.ToTable("Organizations");
                 });
@@ -89,6 +94,9 @@ namespace Organizaciebis_Cnobari.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("MyPersonOrganizationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -104,7 +112,49 @@ namespace Organizaciebis_Cnobari.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MyPersonOrganizationId");
+
                     b.ToTable("People");
+                });
+
+            modelBuilder.Entity("Organizaciebis_Cnobari.Models.PersonOrganization", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Position")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PersonOrganizations");
+                });
+
+            modelBuilder.Entity("Organizaciebis_Cnobari.Models.Organization", b =>
+                {
+                    b.HasOne("Organizaciebis_Cnobari.Models.PersonOrganization", "OrganizationPerson")
+                        .WithMany("MyOrganization")
+                        .HasForeignKey("OrganizationPersonId");
+
+                    b.Navigation("OrganizationPerson");
+                });
+
+            modelBuilder.Entity("Organizaciebis_Cnobari.Models.Person", b =>
+                {
+                    b.HasOne("Organizaciebis_Cnobari.Models.PersonOrganization", "MyPersonOrganization")
+                        .WithMany("MyPerson")
+                        .HasForeignKey("MyPersonOrganizationId");
+
+                    b.Navigation("MyPersonOrganization");
+                });
+
+            modelBuilder.Entity("Organizaciebis_Cnobari.Models.PersonOrganization", b =>
+                {
+                    b.Navigation("MyOrganization");
+
+                    b.Navigation("MyPerson");
                 });
 #pragma warning restore 612, 618
         }

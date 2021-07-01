@@ -42,6 +42,7 @@
                 <td>
                     <a asp-controller="Organization" asp-action="EditOrganization" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-Address="@item.Address" asp-route-Activity="@item.Activity" class="btn btn-success">ორგანიზაციის რედაქტირება</a>
                     <a asp-controller="Organization" asp-action="DeleteOrganization" asp-route-id="@item.Id" asp-route-Name="@item.Name" asp-route-Address="@item.Address" asp-route-Activity="@item.Activity" class="btn btn-success">ორგანიზაციის წაშლა</a>
+                    <a asp-controller="PersonOrganization" asp-action="PersonOrganizationIndex">ფიზიკურ პირთა სია</a>
                 </td>
             </tr>
         }

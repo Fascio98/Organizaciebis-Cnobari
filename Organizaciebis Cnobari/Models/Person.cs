@@ -31,10 +31,13 @@ namespace Organizaciebis_Cnobari.Models
         public string TelephoneNumbers { get; set; }
         [Required(ErrorMessage = "ატვირთეთ ფოტო! ")]
         public string Image { get; set; }
-        
         [NotMapped]
         [Required]
         public IFormFile ImageFile { get; set; }
+        public PersonOrganization MyPersonOrganization { get; set; }
+        
+        
+        
 
     }
 }

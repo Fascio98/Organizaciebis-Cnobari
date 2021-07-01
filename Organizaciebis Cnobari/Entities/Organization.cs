@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Organizaciebis_Cnobari.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,5 +18,6 @@ namespace Organizaciebis_Cnobari.Entities
         [Required(ErrorMessage = "საჭირო ველი")]
         [StringLength(maximumLength: 500, ErrorMessage = "ველის სიგრძე არ უნდა აღემატებოდეს 500-ს!")]
         public string Activity { get; set; }
+        public PersonOrganization OrganizationPerson { get; set; }
     }
 }
