@@ -8,3 +8,9 @@
     <partial name="~/Views/Person/Helper/PersonForm.cshtml" model="Model"></partial>
     <button type="submit" class="btn btn-primary">დამატება</button>
 </form>
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Message
+    </div>
+}
